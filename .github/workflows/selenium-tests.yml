@@ -116,7 +116,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: allure-report-download
+          name: allure-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: build/reports/allure-report/
           retention-days: 30
 
@@ -124,7 +124,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: test-results-download
+          name: allure-report-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             build/test-results/
             build/allure-results/
@@ -174,3 +174,4 @@ jobs:
           echo "📋 Подробности в разделе Artifacts как 'test-results-download'"
           REPORT_URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
           echo "🔗 Allure Report URL: $REPORT_URL"
+          echo "allure-report-${{ github.run_id }}-${{ github.run_attempt }}"
